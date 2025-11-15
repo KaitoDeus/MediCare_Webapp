@@ -1,3 +1,4 @@
+import Booking from "../models/BookingSchema.js"
 import Doctor from "../models/DoctorSchema.js"
 
 export const updateDoctor = async (req, res) => {
@@ -69,5 +70,25 @@ export const getAllDoctor = async (req, res) => {
   } catch (error) {
     console.log("Lỗi khi gọi updateDoctor", error)
     res.status(404).json({ success: false, message: 'không tìm thấy bác sĩ!' })
+  }
+}
+
+export const getDoctorProfile = async (req, res) => {
+  const doctorId = req.userId
+
+  try {
+    const doctor = await Doctor.findById(doctorId)
+
+    if (!doctor) {
+      return res.status(404).json({ success: false, message: 'Không tìm thấy bác sĩ' })
+    }
+
+    const { password, ...rest } = doctor._doc
+    const appointments = await Booking.find({ doctor: doctorId })
+
+    res.status(200).json({ success: true, message: 'Thông tin hồ sơ đang được nhận', data: { ...rest, appointments } })
+
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Có gì đó không ổn, không thể lấy được' })
   }
 }

@@ -1,4 +1,4 @@
-import DoctorCard from "../../components/Doctors/DoctorCard";
+import DoctorCard from "../../components/doctors/DoctorCard";
 import { doctors } from "../../assets/data/doctors";
 import Testimonial from "../../components/testimonial/Testimonial";
 
@@ -33,14 +33,14 @@ const Doctors = () => {
 
       <section>
         <div className="container">
-        <div className="xl:w-[470px] mx-auto">
-          <h2 className="heading text-center">
-            Mọi người chia sẻ gì về chúng tôi</h2>
-          <p className="text__para text-center">
-            Lắng nghe trải nghiệm thực tế từ những bệnh nhân đã sử dụng dịch vụ của chúng tôi.
-             Xem cách chúng tôi mang lại sự chăm sóc chuyên môn và sự hài lòng cho mọi người.
-          </p>
-        </div>
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="heading text-center">
+              Mọi người chia sẻ gì về chúng tôi</h2>
+            <p className="text__para text-center">
+              Lắng nghe trải nghiệm thực tế từ những bệnh nhân đã sử dụng dịch vụ của chúng tôi.
+              Xem cách chúng tôi mang lại sự chăm sóc chuyên môn và sự hài lòng cho mọi người.
+            </p>
+          </div>
           <Testimonial />
         </div>
       </section>

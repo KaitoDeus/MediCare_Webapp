@@ -23,8 +23,8 @@ body {
   border: none !important;
 }
 
-.swiper{
-  padding-bottom:70px !important;
+.swiper {
+  padding-bottom: 70px !important;
 }
 
 .swiper-slide.swiper-slide-next {
@@ -38,7 +38,7 @@ body {
   color: #fff !important;
 }
 
-.swiper-pagination{
+.swiper-pagination {
   top: 90% !important;
 }
 
@@ -83,4 +83,9 @@ body {
   .show__menu {
     display: block;
   }
+}
+
+section.Toastify {
+  padding: 0 !important;
+  margin: 0 !important;
 }
