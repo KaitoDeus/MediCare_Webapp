@@ -11,7 +11,7 @@ export const doctors = [
     totalRating: 272,
     photo: doctorImg01,
     totalPatients: 1300,
-    hospital: "Bệnh viện Đại học Y Dược TP. Hồ Chí Minh.",
+    hospital: "Bệnh viện Đại học Y Dược TP. HCM.",
   },
   {
     id: "02",
