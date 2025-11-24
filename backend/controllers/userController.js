@@ -1,22 +1,42 @@
 import User from "../models/UserSchema.js"
 import Booking from "../models/BookingSchema.js"
 import Doctor from "../models/DoctorSchema.js"
+import bcrypt from "bcryptjs";
 
 // update user
 export const updateUser = async (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
 
   try {
-    const updatedUser = await User.findByIdAndUpdate(id, { $set: req.body }, { new: true })
+    const { password, ...rest } = req.body;
 
-    res.status(200).json({ success: true, message: 'cập nhật thành công!', data: updatedUser })
+    let updateData = { ...rest };
 
+    // Nếu có password mới → hash rồi lưu
+    if (password && password.trim() !== "") {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      updateData.password = hashedPassword;
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { $set: updateData },
+      { new: true }
+    ).select("-password");
+
+    res.status(200).json({
+      success: true,
+      message: "cập nhật thành công!",
+      data: updatedUser
+    });
 
   } catch (error) {
-    console.log("Lỗi khi gọi updateUser", error)
-    res.status(500).json({ success: false, message: 'cập nhật thất bại!' })
+    console.log("Lỗi khi gọi updateUser", error);
+    res.status(500).json({ success: false, message: "cập nhật thất bại!" });
   }
-}
+};
+
 
 // delete user
 export const deleteUser = async (req, res) => {
